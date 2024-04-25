@@ -1,0 +1,122 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common-fragments :: head"></head>
+<body>
+<div th:insert="~{fragments/common-fragments :: scripts}"></div>
+<div th:replace="fragments/common-fragments :: navbar"></div>
+<div id="container" class="bg-light">
+    <div class="py-5">
+        <div class="container py-5 bg-white shadow-sm card-height">
+            <div class="row mx-3">
+                <th:block th:replace="fragments/account-fragments :: account-sidebar"/>
+                <div class="col-md-9 mb-5">
+                    <th:block th:replace="fragments/common-fragments :: info-title(
+                        text='Add cloth',
+                        icon='fas fa-plus-square mr-2'
+                    )"/>
+                    <br/>
+                    <form method="post" action="/admin/add/cloth" enctype="multipart/form-data">
+                        <div class="form row">
+                            <th:block th:replace="fragments/account-fragments :: add-cloth-input(
+                                title='Cloth title',
+                                name='clothTitle',
+                                placeholder='Enter the cloth title',
+                                value=(${cloth} ? ${cloth.clothTitle} : ''),
+                                error=(${clothTitleError})
+                            )"/>
+                            <th:block th:replace="fragments/account-fragments :: add-cloth-input(
+                                title='Brand',
+                                name='perfumer',
+                                placeholder='Enter the brand',
+                                value=(${cloth} ? ${cloth.perfumer} : ''),
+                                error=(${perfumerError})
+                            )"/>
+                        </div>
+                        <div class="form row mt-3">
+                            <th:block th:replace="fragments/account-fragments :: add-cloth-input(
+                                title='Release year',
+                                name='year',
+                                placeholder='Enter the release year',
+                                value=(${cloth} ? ${cloth.year} : ''),
+                                error=(${yearError})
+                            )"/>
+                            <th:block th:replace="fragments/account-fragments :: add-cloth-input(
+                                title='Manufacturer country',
+                                name='country',
+                                placeholder='Manufacturer country',
+                                value=(${cloth} ? ${cloth.country} : ''),
+                                error=(${countryError})
+                            )"/>
+                        </div>
+                        <div class="form row mt-3">
+                            <th:block th:replace="fragments/account-fragments :: add-cloth-select(
+                                title='Cloth type',
+                                name='type',
+                                options=(${ {'Eau de Parfum', 'Eau de Toilette'} }),
+                                error=(${typeError})
+                            )"/>
+                            <th:block th:replace="fragments/account-fragments :: add-cloth-input(
+                                title='Volume',
+                                name='volume',
+                                placeholder='Enter the volume',
+                                value=(${cloth} ? ${cloth.volume} : ''),
+                                error=(${volumeError})
+                            )"/>
+                        </div>
+                        <div class="form row mt-3">
+                            <th:block th:replace="fragments/account-fragments :: add-cloth-select(
+                                title='Gender',
+                                name='clothGender',
+                                options=(${ {'male', 'female'} }),
+                                error=(${clothGenderError})
+                            )"/>
+                            <th:block th:replace="fragments/account-fragments :: add-cloth-input(
+                                title='Top notes',
+                                name='clothTopNotes',
+                                placeholder='Enter the top notes',
+                                value=(${cloth} ? ${cloth.clothTopNotes} : ''),
+                                error=(${clothTopNotesError})
+                            )"/>
+                        </div>
+                        <div class="form row mt-3">
+                            <th:block th:replace="fragments/account-fragments :: add-cloth-input(
+                                title='Heart notes',
+                                name='clothMiddleNotes',
+                                placeholder='Enter the heart notes',
+                                value=(${cloth} ? ${cloth.clothMiddleNotes} : ''),
+                                error=(${clothMiddleNotesError})
+                            )"/>
+                            <th:block th:replace="fragments/account-fragments :: add-cloth-input(
+                                title='Base notes',
+                                name='clothBaseNotes',
+                                placeholder='Enter the base notes',
+                                value=(${cloth} ? ${cloth.clothBaseNotes} : ''),
+                                error=(${clothBaseNotesError})
+                            )"/>
+                        </div>
+                        <div class="form row mt-3">
+                            <th:block th:replace="fragments/account-fragments :: add-cloth-input(
+                                title='Price',
+                                name='price',
+                                placeholder='Enter the price',
+                                value=(${cloth} ? ${cloth.price} : ''),
+                                error=(${priceError})
+                            )"/>
+                            <div class="col" style="margin-top: 35px">
+                                <input type="file" name="file"/>
+                            </div>
+                        </div>
+                        <th:block th:replace="fragments/common-fragments :: icon-button(
+                            text='Add',
+                            buttonClassName='mt-3',
+                            icon='fas fa-plus-square mr-2'
+                        )"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:insert="~{fragments/common-fragments :: footer}"></footer>
+</body>
+</html>

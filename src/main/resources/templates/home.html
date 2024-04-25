@@ -1,0 +1,129 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common-fragments :: head"></head>
+<body>
+<div th:insert="~{fragments/common-fragments :: scripts}"></div>
+<div th:replace="fragments/common-fragments :: navbar"></div>
+<div id="container">
+    <div id="carouselExampleControls" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a th:href="@{/cloth/85}">
+                    <img class="d-block w-100" src="https://i.ibb.co/2YxhhTV/zara.jpg" alt="First slide">
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a th:href="@{/cloth/46}">
+                    <img class="d-block w-100" src="https://i.ibb.co/DzDf3ry/h-m.jpg" alt="Second slide">
+                </a>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div class="container text-center my-3 mt-5">
+        <h3>BRANDS</h3>
+        <div id="perfumerCarousel" class="carousel slide w-100" data-ride="carousel">
+            <div class="carousel-inner w-100" role="listbox">
+                <div class="carousel-item row active">
+                    <th:block th:replace="fragments/clothes-fragments :: perfumer-item(perfumer='Tom Ford', src='https://i.ibb.co/b60g6nC/a.jpg')"/>
+                    <th:block th:replace="fragments/clothes-fragments :: perfumer-item(perfumer='Prada', src='https://i.ibb.co/f1hC5rt/b.jpg')"/>
+                    <th:block th:replace="fragments/clothes-fragments :: perfumer-item(perfumer='Dior', src='https://i.ibb.co/JQGrstM/c.jpg')"/>
+                    <th:block th:replace="fragments/clothes-fragments :: perfumer-item(perfumer='Versace', src='https://i.ibb.co/pnjqJ3X/d.jpg')"/>
+                    <th:block th:replace="fragments/clothes-fragments :: perfumer-item(perfumer='Chanel', src='https://i.ibb.co/QPtMdYJ/e.jpg')"/>
+                    <th:block th:replace="fragments/clothes-fragments :: perfumer-item(perfumer='Dolce&Gabbana', src='https://i.ibb.co/R2SwFTF/f.jpg')"/>
+                </div>
+                <div class="carousel-item row">
+                    <th:block th:replace="fragments/clothes-fragments :: perfumer-item(perfumer='Gucci', src='https://i.ibb.co/V25t7dh/m.jpg')"/>
+                    <th:block th:replace="fragments/clothes-fragments :: perfumer-item(perfumer='Givenchy', src='https://i.ibb.co/tqDkrCj/n.jpg')"/>
+                    <th:block th:replace="fragments/clothes-fragments :: perfumer-item(perfumer='Creed', src='https://i.ibb.co/F0PmnX0/o.jpg')"/>
+                    <th:block th:replace="fragments/clothes-fragments :: perfumer-item(perfumer='Jean Paul Gaultier', src='https://i.ibb.co/qWjdDjF/p.jpg')"/>
+                    <th:block th:replace="fragments/clothes-fragments :: perfumer-item(perfumer='Paco Rabanne', src='https://i.ibb.co/vjG5RH4/q.jpg')"/>
+                    <th:block th:replace="fragments/clothes-fragments :: perfumer-item(perfumer='Giorgio Armani', src='https://i.ibb.co/S5ckqhc/r.jpg')"/>
+                </div>
+                <div class="carousel-item row">
+                    <th:block th:replace="fragments/clothes-fragments :: perfumer-item(perfumer='Bvlgari', src='https://i.ibb.co/vdmpNgv/g.jpg')"/>
+                    <th:block th:replace="fragments/clothes-fragments :: perfumer-item(perfumer='Calvin Klein', src='https://i.ibb.co/Qrn3Hj8/h.jpg')"/>
+                    <th:block th:replace="fragments/clothes-fragments :: perfumer-item(perfumer='Hermes', src='https://i.ibb.co/m4kQmCM/i.jpg')"/>
+                    <th:block th:replace="fragments/clothes-fragments :: perfumer-item(perfumer='Hugo Boss', src='https://i.ibb.co/9wCPjkM/j.jpg')"/>
+                    <th:block th:replace="fragments/clothes-fragments :: perfumer-item(perfumer='Lancome', src='https://i.ibb.co/2c6Gydb/k.jpg')"/>
+                    <th:block th:replace="fragments/clothes-fragments :: perfumer-item(perfumer='Burberry', src='https://i.ibb.co/MGbmbQT/l.jpg')"/>
+                </div>
+            </div>
+            <th:block th:replace="fragments/common-fragments :: carousel-indicators('#perfumerCarousel')"/>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card mb-5">
+                    <a th:href="${'/cloth?genders=female'}">
+                        <img class="img-fluid" src="https://i.ibb.co/yPTv8L3/women.jpg">
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card mb-5">
+                    <a th:href="${'/cloth?genders=male'}">
+                        <img class="img-fluid" src="https://i.ibb.co/5TB3bHF/Men.jpg">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container text-center my-3">
+        <h4>PERSONALLY RECOMMENDED</h4>
+    </div>
+    <div class="container mt-5">
+        <form method="get" action="/cloth/popular">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="clothCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="container">
+                                    <div class="row" th:fragment="list">
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[0]})"/>
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[1]})"/>
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[2]})"/>
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[3]})"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="container">
+                                    <div class="row" th:fragment="list">
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[4]})"/>
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[5]})"/>
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[6]})"/>
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[7]})"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="container">
+                                    <div class="row" th:fragment="list">
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[8]})"/>
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[9]})"/>
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[10]})"/>
+                                        <th:block th:replace="fragments/clothes-fragments :: cloth-item(${clothes[11]})"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <th:block th:replace="fragments/common-fragments :: carousel-indicators('#clothCarousel')"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<footer th:insert="~{fragments/common-fragments :: footer}"></footer>
+</body>
+</html>

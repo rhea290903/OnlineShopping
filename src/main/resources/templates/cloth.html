@@ -1,0 +1,81 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common-fragments :: head"></head>
+<body>
+<div th:insert="~{fragments/common-fragments :: scripts}"></div>
+<div th:replace="fragments/common-fragments :: navbar"></div>
+<div id="container" class="bg-light">
+    <div class="container pt-5 pb-5 bg-white shadow-sm">
+        <div class="row">
+            <div class="col-md-5">
+                <img th:src="@{/img/{path} (path = ${cloth.getFilename()})}" class="rounded mx-auto w-100">
+            </div>
+            <div class="col-md-7">
+                <h2 th:text="${cloth.getClothTitle()}"></h2>
+                <h3 th:text="${cloth.getPerfumer()}"></h3>
+                <p>Product code: <span th:text="${cloth.getId()}"></span></p>
+                <p class="product-stock" style="color: #54C0A1">In Stock</p>
+                <div class="row ml-1">
+                    <h6 class="mr-5">
+                        $<span th:text="${cloth.getPrice()}"></span>.00
+                    </h6>
+                    <form action="/cart/add" method="post">
+                        <button type="submit" name="clothId" class="btn btn-success mx-3"
+                                th:value="${cloth.getId()}">
+                            <i class="fas fa-cart-plus mr-2 fa-lg"></i>
+                            ADD TO CART
+                        </button>
+                    </form>
+                </div>
+                <br>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td>Cloth title:</td>
+                        <td th:text="${cloth.getClothTitle()}"></td>
+                    </tr>
+                    <tr>
+                        <td>Brand:</td>
+                        <td th:text="${cloth.getPerfumer()}"></td>
+                    </tr>
+                    <tr>
+                        <td>Cloth type:</td>
+                        <td th:text="${cloth.getType()}"></td>
+                    </tr>
+                    <tr>
+                        <td>Release year:</td>
+                        <td th:text="${cloth.getYear()}"></td>
+                    </tr>
+                    <tr>
+                        <td>Volume:</td>
+                        <td><span th:text="${cloth.getVolume()}"></span> ml.</td>
+                    </tr>
+                    <tr>
+                        <td>Manufacturer country:</td>
+                        <td th:text="${cloth.getCountry()}"></td>
+                    </tr>
+                    <tr>
+                        <td>Gender:</td>
+                        <td th:text="${cloth.getClothGender()}"></td>
+                    </tr>
+                    <tr>
+                        <td>Top notes:</td>
+                        <td th:text="${cloth.getClothTopNotes()}"></td>
+                    </tr>
+                    <tr>
+                        <td>Heart notes:</td>
+                        <td th:text="${cloth.getClothMiddleNotes()}"></td>
+                    </tr>
+                    <tr>
+                        <td>Base notes:</td>
+                        <td th:text="${cloth.getClothBaseNotes()}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:insert="~{fragments/common-fragments :: footer}"></footer>
+</body>
+</html>
